@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<packaging>pom</packaging>
+	<modules>
+		<module>demo-java</module>
+		<module>demo-jvm</module>
+	</modules>
+<!--	<parent>-->
+<!--		<groupId>org.springframework.boot</groupId>-->
+<!--		<artifactId>spring-boot-starter-parent</artifactId>-->
+<!--		<version>2.6.7</version>-->
+<!--		<relativePath/> &lt;!&ndash; lookup parent from repository &ndash;&gt;-->
+<!--	</parent>-->
+	<groupId>cn.iweer</groupId>
+	<artifactId>demo</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>demo</name>
+	<description>Demo project for Spring Boot</description>
+	<properties>
+		<java.version>1.8</java.version>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<spring.boot.dependencies.version>2.6.6</spring.boot.dependencies.version>
+		<mysql.version>8.0.28</mysql.version>
+		<fastjson2.version>2.0.1</fastjson2.version>
+		<okhttp3.version>3.14.9</okhttp3.version>
+		<commons.lang3.version>3.12.0</commons.lang3.version>
+		<jackson.version.core>2.13.2</jackson.version.core>
+		<jackson.version.databind>2.13.2.2</jackson.version.databind>
+	</properties>
+	<repositories>
+		<repository>
+			<id>maven-public</id>
+			<url>https://nexus.colorv.com/repository/maven-public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+				<checksumPolicy>warn</checksumPolicy>
+			</snapshots>
+		</repository>
+	</repositories>
+	<distributionManagement>
+		<snapshotRepository>
+			<id>snapshots</id>
+			<name>user snapshot</name>
+			<url>https://nexus.colorv.com/repository/maven-snapshots/</url>
+		</snapshotRepository>
+		<repository>
+			<id>releases</id>
+			<name>user release resp</name>
+			<url>https://nexus.colorv.com/repository/maven-releases/</url>
+		</repository>
+	</distributionManagement>
+	<build>
+		<plugins>
+			<!-- 发布源码插件 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>3.0.1</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- 多模块项目版本号更新插件-->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>versions-maven-plugin</artifactId>
+				<version>2.7</version>
+				<configuration>
+					<!-- 关闭备份功能(因为已经有git做版本管理,不需要担心修改可能导致的内容丢失问题)-->
+					<generateBackupPoms>false</generateBackupPoms>
+				</configuration>
+			</plugin>
+
+			<!-- 单元测试覆盖率生成插件 -->
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.7.9</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>prepare-agent</goal>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- 单元测试扩展插件 -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.0.0-M4</version>
+				<configuration>
+					<!-- true: 表示当构建过程出现失败用例时,继续构建-->
+					<testFailureIgnore>true</testFailureIgnore>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

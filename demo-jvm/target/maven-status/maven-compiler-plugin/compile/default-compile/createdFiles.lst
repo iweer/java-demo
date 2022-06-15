@@ -1,0 +1,8 @@
+cn/iweer/jvm/Cmd.class
+cn/iweer/jvm/classpath/Classpath.class
+cn/iweer/jvm/classpath/impl/CompositeEntry.class
+cn/iweer/jvm/classpath/impl/WildcardEntry.class
+cn/iweer/jvm/classpath/impl/ZipEntry.class
+cn/iweer/jvm/classpath/impl/DirEntry.class
+cn/iweer/jvm/classpath/Entry.class
+cn/iweer/jvm/Main.class
